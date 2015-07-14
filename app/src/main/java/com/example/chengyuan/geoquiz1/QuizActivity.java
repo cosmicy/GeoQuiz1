@@ -15,6 +15,7 @@ public class QuizActivity extends ActionBarActivity {
     private Button mTrueButton;
     private Button mFalseButton;
     private Button mNextButton;
+    private Button mPrevButton;
     private TextView mTextView;
     private int mIndex = 0;
 
@@ -33,8 +34,9 @@ public class QuizActivity extends ActionBarActivity {
     private void nextQuestion() {
         mIndex = (mIndex + 1) % arr.length;
     }
-    private void preQuestion() {
-        mIndex = (mIndex - 1) % arr.length;
+    private void prevQuestion() {
+        //mIndex = (mIndex - 1) >= 0 ? (mIndex - 1) : (mIndex - 1) + arr.length;
+        mIndex = (mIndex - 1) == -1 ? arr.length - 1 : mIndex - 1 ;
     }
 
     private void check(boolean userPressed) {
@@ -88,6 +90,15 @@ public class QuizActivity extends ActionBarActivity {
             public void onClick(View v) {
                 //
                 nextQuestion();
+                frash();
+            }
+        });
+        mPrevButton = (Button) findViewById(R.id.prev_button);
+        mPrevButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //
+                prevQuestion();
                 frash();
             }
         });
