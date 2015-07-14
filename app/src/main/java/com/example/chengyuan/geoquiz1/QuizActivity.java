@@ -30,6 +30,12 @@ public class QuizActivity extends ActionBarActivity {
         //mTextView = (TextView)findViewById(R.id.question_text_view);
         mTextView.setText(arr[mIndex].getQuestion());
     }
+    private void nextQuestion() {
+        mIndex = (mIndex + 1) % arr.length;
+    }
+    private void preQuestion() {
+        mIndex = (mIndex - 1) % arr.length;
+    }
 
     private void check(boolean userPressed) {
         boolean answer = arr[mIndex].isTrueQuestion();
@@ -48,7 +54,13 @@ public class QuizActivity extends ActionBarActivity {
         setContentView(R.layout.activity_quiz);
 
         mTextView = (TextView)findViewById(R.id.question_text_view);
-
+        mTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextQuestion();
+                frash();
+            }
+        });
         frash();
 
         //true的方法
@@ -75,7 +87,7 @@ public class QuizActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 //
-                mIndex = (mIndex + 1) % arr.length;
+                nextQuestion();
                 frash();
             }
         });
