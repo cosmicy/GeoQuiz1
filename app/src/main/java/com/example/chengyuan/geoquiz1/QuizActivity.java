@@ -36,7 +36,11 @@ public class QuizActivity extends ActionBarActivity {
     }
     private void prevQuestion() {
         //mIndex = (mIndex - 1) >= 0 ? (mIndex - 1) : (mIndex - 1) + arr.length;
-        mIndex = (mIndex - 1) == -1 ? arr.length - 1 : mIndex - 1 ;
+        //mIndex = (mIndex - 1) == -1 ? arr.length - 1 : mIndex - 1 ;
+        mIndex--;
+        if (mIndex < 0) {
+            mIndex = arr.length - 1;
+        }
     }
 
     private void check(boolean userPressed) {
