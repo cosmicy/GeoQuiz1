@@ -15,6 +15,7 @@ import android.widget.Toast;
 public class QuizActivity extends ActionBarActivity {
 
     private static final String TAG = "QuizActivity";
+    private static final String KEY_INDEX = "index";
 
     private Button mTrueButton;
     private Button mFalseButton;
@@ -72,6 +73,10 @@ public class QuizActivity extends ActionBarActivity {
                 frash();
             }
         });
+
+        if (savedInstanceState != null) {
+            mIndex = savedInstanceState.getInt(KEY_INDEX,0);
+        }
         frash();
 
         //true的方法
@@ -114,6 +119,17 @@ public class QuizActivity extends ActionBarActivity {
 
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        Log.i(TAG,"onSaveInstanceState");
+        savedInstanceState.putInt(KEY_INDEX,mIndex);
+    }
+
+
+
+
+    //其他生命周期
 
     @Override
     public void onStart() {
